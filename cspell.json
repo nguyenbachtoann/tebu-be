@@ -1,0 +1,17 @@
+// cSpell Settings
+{
+  "language": "en-US",
+  // words - list of words to be always considered correct
+  "ignoreWords": [
+    "nestjs",
+    "Fastify",
+    "fastify",
+    "allowlist",
+    "prebuild",
+    "tebu"
+  ],
+  // flagWords - list of words to be always considered incorrect
+  // This is useful for offensive words and common spelling errors.
+  // For example "hte" should be "the"
+  "flagWords": ["hte"]
+}
