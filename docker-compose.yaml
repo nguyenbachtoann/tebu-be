@@ -1,0 +1,35 @@
+#docker-compose --env-file ./.env.dev up -d --build tebu_be
+
+version: '3.8'
+services:
+  tebu_be:
+    container_name: tebu_be
+    image: tebu_be:1.0.0
+    build:
+      context: .
+      args:
+        ENV: ENV
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    links:
+      - db
+    environment:
+      WAIT_HOSTS: db:${DATABASE_PORT}
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: mongo
+    container_name: db_mongo
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - '${DATABASE_PORT}:${DATABASE_PORT}'
+    restart: unless-stopped
+
+volumes:
+  mongodata:
