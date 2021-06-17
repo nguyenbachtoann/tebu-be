@@ -9,7 +9,7 @@ input CreateHobbyInput {
 input CreateUserInput {
   address: String!
   age: Int!
-  hobbies: [String!]!
+  hobbies: [String!]
   name: String!
 }
 

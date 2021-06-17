@@ -4,7 +4,7 @@ version: '3.8'
 services:
   tebu_be:
     container_name: tebu_be
-    image: tebu_be:1.0.0
+    image: tebu_be:${TAG}
     build:
       context: .
       args:
@@ -14,22 +14,30 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+    networks:
+      - network
     links:
-      - db
-    environment:
-      WAIT_HOSTS: db:${DATABASE_PORT}
+      - mongo
+    # environment:
+    #   WAIT_HOSTS: mongo:${DATABASE_PORT}
     depends_on:
-      - db
+      - mongo
     restart: unless-stopped
 
-  db:
+  mongo:
     image: mongo
     container_name: db_mongo
     volumes:
-      - mongodata:/data/db
+      - mongodata:/data/mongo
+    networks:
+      - network
     ports:
       - '${DATABASE_PORT}:${DATABASE_PORT}'
     restart: unless-stopped
 
 volumes:
   mongodata:
+
+networks:
+  network:
+    driver: bridge

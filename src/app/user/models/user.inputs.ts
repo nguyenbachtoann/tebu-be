@@ -16,8 +16,8 @@ export class CreateUserInput {
   @Field(() => String)
   address: string;
 
-  @Field(() => [String])
-  hobbies: MongooseSchema.Types.ObjectId[];
+  @Field(() => [String], { nullable: true })
+  hobbies?: MongooseSchema.Types.ObjectId[];
 }
 
 @InputType()
