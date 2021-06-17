@@ -1,16 +1,12 @@
-#docker-compose --env-file ./.env.dev up -d --build tebu_be
+#docker-compose -f docker-compose-hub.yaml -d --build tebu_be
 
 version: '3.8'
 services:
   tebu_be:
     container_name: tebu_be
-    image: tebu_be:${TAG}
-    build:
-      context: .
-      args:
-        ENV: ENV
+    image: nguyenbachtoan/tebu-nest:1.0.0-dev
     ports:
-      - '${APP_PORT}:${APP_PORT}'
+      - '8080:8080'
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
@@ -30,7 +26,7 @@ services:
     networks:
       - network
     ports:
-      - '${DATABASE_PORT}:${DATABASE_PORT}'
+      - '27017:27017'
     restart: unless-stopped
 
 volumes:
