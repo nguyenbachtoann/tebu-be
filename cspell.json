@@ -9,7 +9,10 @@
     "allowlist",
     "prebuild",
     "tebu",
-    "mongodb"
+    "mongodb",
+    "CICD",
+    "cicd",
+    "bahmutov"
   ],
   // flagWords - list of words to be always considered incorrect
   // This is useful for offensive words and common spelling errors.

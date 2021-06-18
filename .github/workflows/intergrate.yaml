@@ -1,0 +1,15 @@
+name: Tebu CICD
+
+on:
+  push:
+    branches: [test/cicd]
+
+jobs:
+  build-code:
+    runs-on: ubuntu-latest
+      name: Build and test
+      steps:
+        - uses: actions/checkout@v2
+        - uses: bahmutov/npm-install@v1
+        - run: npm t
+        - run: npm run build
