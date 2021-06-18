@@ -7,7 +7,7 @@ on:
 jobs:
   build-code:
     runs-on: ubuntu-latest
-      name: Build and test
+    name: Build and test
       steps:
         - uses: actions/checkout@v2
         - uses: bahmutov/npm-install@v1
