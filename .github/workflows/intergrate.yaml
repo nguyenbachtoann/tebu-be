@@ -5,10 +5,23 @@ on:
     branches: [test/cicd]
 
 jobs:
-  build-code:
+  build-docker:
     runs-on: ubuntu-latest
     name: Build and test
     steps:
-      - uses: actions/checkout@v2
-      - uses: bahmutov/npm-install@v1
-      - run: npm run build
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Create .env file
+        run: |
+          touch .env
+          echo TAG=${{ secrets.TAG }} >> .env
+          echo APP_PORT=${{ secrets.APP_PORT }} >> .env
+          echo DATABASE_PORT=${{ secrets.DATABASE_PORT }} >> .env
+          echo MONGO_URI=${{ secrets.MONGO_URI }} >> .env
+
+      - name: Run Docker Compose
+        run: docker-compose --env-file ./.env up -d --build tebu_be
+
+      - name: Check Container
+        run: docker ps -a
