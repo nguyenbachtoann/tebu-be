@@ -1,5 +1,9 @@
 name: Tebu CICD
 
+on:
+  push:
+    branches: [test/cicd]
+
 jobs:
   build-docker:
     runs-on: ubuntu-latest
@@ -19,6 +23,5 @@ jobs:
 
       - name: Copy .env file to source code
         run: cp .env.dev ./
-
       - name: Check Container
         run: docker ps -a
