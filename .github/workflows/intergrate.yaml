@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        run: ls -l
 
       - name: Create .env file
         run: |
+          run: ls -l
           touch .env.dev
           echo TAG=${{ secrets.TAG }} >> .env.dev
           echo APP_PORT=${{ secrets.APP_PORT }} >> .env.dev
