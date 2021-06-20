@@ -17,11 +17,7 @@ jobs:
           touch .env.dev
           echo TAG=${{ secrets.TAG }} >> .env.dev
           echo APP_PORT=${{ secrets.APP_PORT }} >> .env.dev
-          echo DATABASE_PORT=${{ secrets.DATABASE_PORT }} >> .env.dev
           echo MONGO_URI=${{ secrets.MONGO_URI }} >> .env.dev
-
-      - name: Copy .env file to source code
-        run: cp .env.dev $GITHUB_WORKSPACE
 
       - name: Check Container
         run: docker ps -a
