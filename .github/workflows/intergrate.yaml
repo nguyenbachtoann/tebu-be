@@ -14,7 +14,6 @@ jobs:
 
       - name: Create .env file
         run: |
-          ls
           touch .env.dev
           echo TAG=${{ secrets.TAG }} >> .env.dev
           echo APP_PORT=${{ secrets.APP_PORT }} >> .env.dev
@@ -22,6 +21,7 @@ jobs:
           echo MONGO_URI=${{ secrets.MONGO_URI }} >> .env.dev
 
       - name: Copy .env file to source code
-        run: cp .env.dev ./
+        run: cp .env.dev $GITHUB_WORKSPACE
+
       - name: Check Container
         run: docker ps -a
