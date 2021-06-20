@@ -1,4 +1,4 @@
-#docker-compose --env-file ./.env.dev up -d --build tebu_be
+# For local
 
 version: '3.8'
 services:

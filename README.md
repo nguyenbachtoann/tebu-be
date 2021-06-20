@@ -26,48 +26,31 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+This project was created for manage Team Building activities of the companies
 
-```bash
-$ npm install
-```
+Using **Nest** for backend
 
-## Running the app
+- GraphQL
+- Mongo
 
-```bash
-# development
-$ npm run start
+Using Docker to build for development
 
-# watch mode
-$ npm run start:dev
+<!--
+- 1. `docker run -p 27017:27017 mongo:latest mongo`
+- 2. `docker run -d -P --name web --link db:db training/webapp python app.py` -->
 
-# production mode
-$ npm run start:prod
-```
+# Docker
 
-## Test
+<b>Run Mongo</b>
 
-```bash
-# unit tests
-$ npm run test
+`docker run -p 27017:27017 -v mongodata:/data/mongo --name db_mongo mongo:latest`
 
-# e2e tests
-$ npm run test:e2e
+<b>Run App</b>
 
-# test coverage
-$ npm run test:cov
-```
+`docker run -p 8080:8080 --name tebu_be --link db_mongo:db_mongo tebu_be:1.0.0`
 
-## Support
+# Docker Compose
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Need .env file to run, provided manually
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+`docker-compose --env-file ./.env.dev up -d --build tebu_be`
