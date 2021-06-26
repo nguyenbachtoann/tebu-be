@@ -9,8 +9,10 @@ input CreateHobbyInput {
 input CreateUserInput {
   address: String!
   age: Int!
+  email: String!
   hobbies: [String!]
   name: String!
+  password: String!
 }
 
 type Hobby {
@@ -24,9 +26,10 @@ input ListHobbyInput {
 }
 
 input ListUserInput {
-  _id: String
+  _id: String!
   address: String
   age: Int
+  email: String!
   hobbies: [String!]
   name: String
 }
@@ -56,14 +59,17 @@ input UpdateUserInput {
   _id: String!
   address: String
   age: Int
+  email: String
   hobbies: [String!]
   name: String
+  password: String
 }
 
 type User {
   _id: String!
   address: String!
   age: Int!
+  email: String!
   hobbies(populate: Boolean!): [Hobby!]!
   name: String!
 }

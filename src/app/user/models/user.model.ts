@@ -5,8 +5,8 @@ import { Document, Schema as MongooseSchema } from 'mongoose';
 import { Hobby } from 'src/app/hobby/models/hobby.model';
 
 /**
- * @ObjectType using for define type from GraphQL
- * @Schema using for define schema from Mongo
+ * @ObjectType using for define the type of GraphQL
+ * @Schema using for define the schema of Mongo
  * Both can put into the same Model like this
  */
 
@@ -15,6 +15,14 @@ import { Hobby } from 'src/app/hobby/models/hobby.model';
 export class User {
   @Field(() => String)
   _id: MongooseSchema.Types.ObjectId;
+
+  @Field(() => String)
+  @Prop()
+  email: string;
+
+  // @Field(() => String)
+  @Prop()
+  password: string;
 
   @Field(() => String)
   @Prop()

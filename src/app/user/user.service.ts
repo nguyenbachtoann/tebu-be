@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Schema as MongooseSchema } from 'mongoose';
-import * as _ from 'lodash';
 import { User, UserDocument } from './models/user.model';
 import {
   CreateUserInput,
@@ -20,6 +19,10 @@ export class UserService {
 
   getById(_id: MongooseSchema.Types.ObjectId): Promise<User> {
     return this.userModel.findById(_id).exec();
+  }
+
+  getByEmail(email: string): Promise<User> | undefined {
+    return this.userModel.findOne({ email }).exec();
   }
 
   list(filters: ListUserInput): Promise<User[]> {

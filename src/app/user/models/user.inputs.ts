@@ -2,11 +2,17 @@ import { Field, InputType, Int } from '@nestjs/graphql';
 import { Schema as MongooseSchema } from 'mongoose';
 
 /**
- * @InputType define a Input Type that can use as a input with GraphQL
+ * @InputType define an Input Type that can use as a input with GraphQL
  */
 
 @InputType()
 export class CreateUserInput {
+  @Field(() => String)
+  email: string;
+
+  @Field(() => String)
+  password: string;
+
   @Field(() => String)
   name: string;
 
@@ -22,8 +28,11 @@ export class CreateUserInput {
 
 @InputType()
 export class ListUserInput {
-  @Field(() => String, { nullable: true })
+  @Field(() => String)
   _id?: MongooseSchema.Types.ObjectId;
+
+  @Field(() => String)
+  email?: string;
 
   @Field(() => String, { nullable: true })
   name?: string;
@@ -42,6 +51,12 @@ export class ListUserInput {
 export class UpdateUserInput {
   @Field(() => String)
   _id: MongooseSchema.Types.ObjectId;
+
+  @Field(() => String, { nullable: true })
+  email?: string;
+
+  @Field(() => String, { nullable: true })
+  password?: string;
 
   @Field(() => String, { nullable: true })
   name?: string;

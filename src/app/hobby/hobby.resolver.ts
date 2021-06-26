@@ -10,8 +10,11 @@ import {
   ListHobbyInput,
   UpdateHobbyInput,
 } from './models/hobby.inputs';
+import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver(() => Hobby)
+@UseGuards(GqlAuthGuard)
 export class HobbyResolver {
   constructor(private hobbyService: HobbyService) {}
 

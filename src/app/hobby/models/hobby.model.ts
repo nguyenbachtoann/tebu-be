@@ -3,8 +3,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 
 /**
- * @ObjectType using for define type from GraphQL
- * @Schema using for define schema from Mongo
+ * @ObjectType using for define the type of GraphQL
+ * @Schema using for define the schema of Mongo
  * Both can put into the same Model like this
  */
 
