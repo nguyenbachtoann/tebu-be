@@ -4,10 +4,15 @@
   "description": "",
   "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "main": "dist/main",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "rm -rf dist && env-cmd -f ./.env.dev nest build",
+    "gc:build": "npm run build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:local": "env-cmd -f ./.env.local nest build --webpack --webpackPath webpack-hmr.config.js --watch",
@@ -29,6 +34,7 @@
     "@nestjs/mongoose": "^7.2.4",
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/platform-fastify": "^7.6.17",
+    "@nestjs/terminus": "^7.2.0",
     "@types/mongoose": "^5.11.97",
     "apollo-server-express": "^2.25.1",
     "env-cmd": "^10.1.0",

@@ -1,0 +1,11 @@
+@baseURL = http://localhost:8080
+@email = toannb3@fsoft.com.vn
+@password = toan123
+
+POST {{baseURL}}/auth/login  HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}

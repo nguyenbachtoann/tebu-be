@@ -28,18 +28,24 @@
 
 This project was created for manage Team Building activities of the companies
 
-Using **Nest** for backend
+Using **Nest** for backend, and:
 
-- GraphQL
-- Mongo
-
-Using Docker to build for development
+- [GraphQL](https://graphql.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [Passport](http://www.passportjs.org/)
+- [Docker](https://www.docker.com/) - to build for development
 
 <!--
 - 1. `docker run -p 27017:27017 mongo:latest mongo`
 - 2. `docker run -d -P --name web --link db:db training/webapp python app.py` -->
 
-# Docker
+# Instruction Manual
+
+For create service to development
+
+## Docker
+
+Specify image to run
 
 <b>Run Mongo</b>
 
@@ -47,10 +53,18 @@ Using Docker to build for development
 
 <b>Run App</b>
 
+_If there is no existing image, build new image from source code_
+
+`docker build -t tebu_be:1.0.0 .`
+
+Then run the command bellow
+
 `docker run -p 8080:8080 --name tebu_be --link db_mongo:db_mongo tebu_be:1.0.0`
 
-# Docker Compose
+## Docker Compose
 
-Need .env file to run, provided manually
+_If you want to run and create a full service, run the command bellow_
+
+Need .env file to run, provided manually (contact the owner of this github repo)
 
 `docker-compose --env-file ./.env.dev up -d --build tebu_be`

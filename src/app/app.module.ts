@@ -1,3 +1,4 @@
+import { AppController } from './app.controller';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppService } from './app.service';
@@ -6,6 +7,7 @@ import { HobbyModule } from './hobby/hobby.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { join } from 'path';
+import { TerminusModule } from '@nestjs/terminus';
 
 @Module({
   imports: [
@@ -19,8 +21,9 @@ import { join } from 'path';
       sortSchema: true,
       debug: false,
     }),
+    TerminusModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
