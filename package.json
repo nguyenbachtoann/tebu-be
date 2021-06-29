@@ -8,7 +8,7 @@
   "main": "dist/main.js",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "rm -rf dist && env-cmd -f ./.env.dev nest build",
+    "build": "rm -rf dist && nest build &&  env-cmd -f ./.env.dev start:prod",
     "gc:build": "npm run build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
