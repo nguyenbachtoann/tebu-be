@@ -14,7 +14,10 @@ import { TerminusModule } from '@nestjs/terminus';
     UserModule,
     HobbyModule,
     ConfigModule.forRoot({ isGlobal: true }),
-    MongooseModule.forRoot(process.env.MONGO_URI, { useNewUrlParser: true }),
+    MongooseModule.forRoot(
+      'mongodb+srv://tebuuser:tebuuser1234@cluster0.qnyau.mongodb.net/tebu?retryWrites=true&w=majority',
+      { useNewUrlParser: true },
+    ),
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       installSubscriptionHandlers: true,
