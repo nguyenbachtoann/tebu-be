@@ -2,8 +2,6 @@ import { Field, ObjectType, Int } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 
-import { Hobby } from 'src/app/hobby/models/hobby.model';
-
 /**
  * @ObjectType using for define the type of GraphQL
  * @Schema using for define the schema of Mongo
@@ -20,7 +18,7 @@ export class User {
   @Prop()
   email: string;
 
-  // @Field(() => String)
+  @Field(() => String, { nullable: true })
   @Prop()
   password: string;
 
@@ -28,17 +26,23 @@ export class User {
   @Prop()
   name: string;
 
-  @Field(() => Int)
+  @Field(() => String)
   @Prop()
-  age: number;
+  gender: string;
 
   @Field(() => String)
   @Prop()
-  address: string;
+  phone: string;
 
-  @Field(() => [Hobby])
-  @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Hobby.name })
-  hobbies: MongooseSchema.Types.ObjectId[] | Hobby[];
+  // TODO: add Team
+
+  @Field(() => String)
+  @Prop()
+  role: string;
+
+  // @Field(() => [Hobby])
+  // @Prop({ type: [MongooseSchema.Types.ObjectId], ref: Hobby.name })
+  // hobbies: MongooseSchema.Types.ObjectId[] | Hobby[];
 }
 
 export type UserDocument = User & Document;

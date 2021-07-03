@@ -16,14 +16,18 @@ export class CreateUserInput {
   @Field(() => String)
   name: string;
 
-  @Field(() => Int)
-  age: number;
+  @Field(() => String)
+  gender: number;
 
   @Field(() => String)
-  address: string;
+  phone: string;
 
-  @Field(() => [String], { nullable: true })
-  hobbies?: MongooseSchema.Types.ObjectId[];
+  @Field(() => String)
+  role: string;
+
+  // TODO: add Team
+  // @Field(() => [String], { nullable: true })
+  // hobbies?: MongooseSchema.Types.ObjectId[];
 }
 
 @InputType()
@@ -31,20 +35,24 @@ export class ListUserInput {
   @Field(() => String)
   _id?: MongooseSchema.Types.ObjectId;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   email?: string;
 
   @Field(() => String, { nullable: true })
   name?: string;
 
-  @Field(() => Int, { nullable: true })
-  age?: number;
+  @Field(() => String, { nullable: true })
+  gender?: string;
 
   @Field(() => String, { nullable: true })
-  address?: string;
+  phone?: string;
 
-  @Field(() => [String], { nullable: true })
-  hobbies?: MongooseSchema.Types.ObjectId[];
+  @Field(() => String, { nullable: true })
+  role?: string;
+
+  // TODO: add Team
+  // @Field(() => [String], { nullable: true })
+  // hobbies?: MongooseSchema.Types.ObjectId[];
 }
 
 @InputType()
@@ -61,12 +69,16 @@ export class UpdateUserInput {
   @Field(() => String, { nullable: true })
   name?: string;
 
-  @Field(() => Int, { nullable: true })
-  age?: number;
+  @Field(() => String, { nullable: true })
+  gender?: string;
 
   @Field(() => String, { nullable: true })
-  address?: string;
+  phone: string;
 
-  @Field(() => [String], { nullable: true })
-  hobbies?: MongooseSchema.Types.ObjectId[];
+  @Field(() => String, { nullable: true })
+  role?: string;
+
+  // TODO: add Team
+  // @Field(() => [String], { nullable: true })
+  // hobbies?: MongooseSchema.Types.ObjectId[];
 }

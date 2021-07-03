@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "60c61ee3e6112a1f56c8ea21"
+  },
+  "name": "Play Game",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c61f4fe6112a1f56c8ea22"
+  },
+  "name": "Singing",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c61f55e6112a1f56c8ea23"
+  },
+  "name": "Dancing",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c61f8be6112a1f56c8ea24"
+  },
+  "name": "Travel",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c61f99e6112a1f56c8ea25"
+  },
+  "name": "Read Book",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60c61faae6112a1f56c8ea26"
+  },
+  "name": "Music",
+  "__v": 0
+}]

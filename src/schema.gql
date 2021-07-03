@@ -7,12 +7,12 @@ input CreateHobbyInput {
 }
 
 input CreateUserInput {
-  address: String!
-  age: Int!
   email: String!
-  hobbies: [String!]
+  gender: String!
   name: String!
   password: String!
+  phone: String!
+  role: String!
 }
 
 type Hobby {
@@ -27,23 +27,24 @@ input ListHobbyInput {
 
 input ListUserInput {
   _id: String!
-  address: String
-  age: Int
-  email: String!
-  hobbies: [String!]
+  email: String
+  gender: String
   name: String
+  phone: String
+  role: String
 }
 
 type Mutation {
+  create(payload: CreateUserInput!): User!
   createHobby(payload: CreateHobbyInput!): Hobby!
-  createUser(payload: CreateUserInput!): User!
+  delete(_id: String!): User!
   deleteHobby(_id: String!): Hobby!
-  deleteUser(_id: String!): User!
+  update(payload: UpdateUserInput!): User!
   updateHobby(payload: UpdateHobbyInput!): Hobby!
-  updateUser(payload: UpdateUserInput!): User!
 }
 
 type Query {
+  current: User!
   hobbies(filters: ListHobbyInput): [Hobby!]!
   hobby(_id: String!): Hobby!
   user(_id: String!): User!
@@ -57,19 +58,20 @@ input UpdateHobbyInput {
 
 input UpdateUserInput {
   _id: String!
-  address: String
-  age: Int
   email: String
-  hobbies: [String!]
+  gender: String
   name: String
   password: String
+  phone: String
+  role: String
 }
 
 type User {
   _id: String!
-  address: String!
-  age: Int!
   email: String!
-  hobbies(populate: Boolean!): [Hobby!]!
+  gender: String!
   name: String!
+  password: String
+  phone: String!
+  role: String!
 }

@@ -1,0 +1,92 @@
+[{
+  "_id": {
+    "$oid": "60c623e1d094e9201d79e137"
+  },
+  "hobbies": [
+    {
+      "$oid": "60c61ee3e6112a1f56c8ea21"
+    },
+    {
+      "$oid": "60c61f4fe6112a1f56c8ea22"
+    }
+  ],
+  "address": "20 Trần Bảng, khu vực 1, thị trấn Châu Ổ, huyện Bình Sơn, tỉnh Quảng Ngãi",
+  "age": 24,
+  "name": "Nguyễn Bách Toàn",
+  "__v": 0,
+  "email": "toannb3@fsoft.com.vn",
+  "password": "toan123"
+},{
+  "_id": {
+    "$oid": "60c6246ad094e9201d79e138"
+  },
+  "hobbies": [
+    {
+      "$oid": "60c61f55e6112a1f56c8ea23"
+    },
+    {
+      "$oid": "60c61f8be6112a1f56c8ea24"
+    }
+  ],
+  "address": "22E đường số 14, phường 5, Gò Vấp, TPHCM",
+  "age": 25,
+  "name": "Huỳnh Nhật Cường",
+  "__v": 0,
+  "email": "cuonghn2@fsoft.com.vn",
+  "password": "cuong123"
+},{
+  "_id": {
+    "$oid": "60cb61462912cb1217e09c92"
+  },
+  "hobbies": [],
+  "address": "Long An",
+  "age": 24,
+  "name": "Võ Hoài Em",
+  "__v": 0,
+  "email": "emvh1@fsoft.com.vn",
+  "password": "hoaiem123"
+},{
+  "_id": {
+    "$oid": "60d6fda5e1d99d6d605f58ef"
+  },
+  "hobbies": [],
+  "address": "Tokyo",
+  "age": 24,
+  "email": "tanjiro@fsoft.com.vn",
+  "name": "Tanjiro",
+  "password": "tanjiro123",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d6fdf8e1d99d6d605f58f0"
+  },
+  "hobbies": [],
+  "address": "Leaf Village",
+  "age": 30,
+  "email": "narutou@fsoft.com.vn",
+  "name": "Uzimaki Naruto",
+  "password": "naruto123",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d6fe12e1d99d6d605f58f1"
+  },
+  "hobbies": [],
+  "address": "Leaf Village",
+  "age": 30,
+  "email": "sasukeu@fsoft.com.vn",
+  "name": "Uchiha Sasuke",
+  "password": "sasuke123",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d70599e1d99d6d605f58f2"
+  },
+  "hobbies": [],
+  "address": "Leaf Village",
+  "age": 30,
+  "email": "itachiu@fsoft.com.vn",
+  "name": "Uchiha Itachi",
+  "password": "itachi123",
+  "__v": 0
+}]

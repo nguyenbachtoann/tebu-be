@@ -1,4 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Md5 } from 'ts-md5/dist/md5';
+import {
+  ConflictException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Schema as MongooseSchema } from 'mongoose';
 import { User, UserDocument } from './models/user.model';
@@ -11,9 +16,18 @@ import {
 @Injectable()
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  saltRounds = 10;
 
   create(payload: CreateUserInput): Promise<User> {
+    const user = this.getByEmail(payload.email);
+    if (user) {
+      throw new ConflictException('Email already in use!');
+    }
+    const hashedPassword = Md5.hashStr(payload.password);
+    payload = { ...payload, password: hashedPassword };
+
     const createdUser = new this.userModel(payload);
+
     return createdUser.save();
   }
 

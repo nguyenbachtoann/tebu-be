@@ -1,13 +1,7 @@
-import { GqlAuthGuard } from './../auth/guards/gql-auth.guard';
+import { AuthService } from 'src/app/auth/auth.service';
+import { GqlAuthGuard } from 'src/app/auth/guards/gql-auth.guard';
 import { UseGuards } from '@nestjs/common';
-import {
-  Args,
-  Mutation,
-  Query,
-  Resolver,
-  ResolveField,
-  Parent,
-} from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Schema as MongooseSchema } from 'mongoose';
 
 import { User } from './models/user.model';
@@ -17,14 +11,16 @@ import {
   ListUserInput,
   UpdateUserInput,
 } from './models/user.inputs';
-import { UserDocument } from './models/user.model';
-import { Hobby } from 'src/app/hobby/models/hobby.model';
-import { CurrentUser } from '../auth/auth.current-user.decorator';
+import { CurrentUser } from 'src/app/auth/auth.decorator';
+import { ROLE_ENUM } from 'src/common/common.enum';
 
-@Resolver(() => User)
 @UseGuards(GqlAuthGuard)
+@Resolver(() => User)
 export class UserResolver {
-  constructor(private personService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+  ) {}
 
   @Query(() => User)
   async user(
@@ -32,7 +28,14 @@ export class UserResolver {
     @Args('_id', { type: () => String })
     _id: MongooseSchema.Types.ObjectId,
   ) {
-    return this.personService.getById(_id);
+    this.authService.allowRole(user, [ROLE_ENUM.Admin, ROLE_ENUM.User]);
+
+    const dbUser = await this.userService.getById(_id);
+    this.authService.getOnly(dbUser, user, [ROLE_ENUM.User]);
+
+    // dbUser.password = null;
+
+    return dbUser;
   }
 
   @Query(() => [User])
@@ -40,37 +43,53 @@ export class UserResolver {
     @CurrentUser() user: User,
     @Args('filters', { nullable: true }) filters?: ListUserInput,
   ) {
-    console.log('user: ', user);
-    return this.personService.list(filters);
+    this.authService.allowRole(user, [ROLE_ENUM.Admin]);
+    return this.userService.list(filters);
   }
 
   @Mutation(() => User)
-  async createUser(@Args('payload') payload: CreateUserInput) {
-    return this.personService.create(payload);
+  async create(
+    @CurrentUser() user: User,
+    @Args('payload') payload: CreateUserInput,
+  ) {
+    this.authService.allowRole(user, [ROLE_ENUM.Admin]);
+    return this.userService.create(payload);
   }
 
   @Mutation(() => User)
-  async updateUser(@Args('payload') payload: UpdateUserInput) {
-    return this.personService.update(payload);
+  async update(
+    @CurrentUser() user: User,
+    @Args('payload') payload: UpdateUserInput,
+  ) {
+    this.authService.allowRole(user, [ROLE_ENUM.Admin]);
+    return this.userService.update(payload);
   }
 
   @Mutation(() => User)
-  async deleteUser(
+  async delete(
+    @CurrentUser() user: User,
     @Args('_id', { type: () => String }) _id: MongooseSchema.Types.ObjectId,
   ) {
-    return this.personService.delete(_id);
+    this.authService.allowRole(user, [ROLE_ENUM.Admin]);
+    return this.userService.delete(_id);
   }
 
-  @ResolveField()
-  async hobbies(
-    @Parent() person: UserDocument,
-    @Args('populate') populate: boolean,
-  ) {
-    if (populate)
-      await person
-        .populate({ path: 'hobbies', model: Hobby.name })
-        .execPopulate();
-
-    return person.hobbies;
+  @Query(() => User)
+  async current(@CurrentUser() user?: User) {
+    // user.password = null;
+    return user;
   }
+
+  // @ResolveField()
+  // async hobbies(
+  //   @Parent() person: UserDocument,
+  //   @Args('populate') populate: boolean,
+  // ) {
+  //   if (populate)
+  //     await person
+  //       .populate({ path: 'hobbies', model: Hobby.name })
+  //       .execPopulate();
+
+  //   return person.hobbies;
+  // }
 }
